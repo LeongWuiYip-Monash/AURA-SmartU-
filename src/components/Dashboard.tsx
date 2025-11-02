@@ -4,14 +4,14 @@ import { UserCircle2, School, ArrowUpDown, Car, ParkingSquare, BookOpen, Utensil
 import { VoiceAssistant } from './VoiceAssistant';
 import { useState, useEffect } from 'react';
 import { predictNextHour, Prediction } from '../services/predictionService';
-const defaultLogo = 'https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=200';
+const taylorLogo = 'https://stackblitz.com/storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDg3NDUyNTAsInB1ciI6ImJsb2JfaWQifX0=--7b7d0d0a54feab3937da7a7dc80fadb46b1d364b/-TAYLOR-LOGO.png';
 
 const universityLogos: Record<string, string> = {
-  'TAYLOR': defaultLogo,
-  'TAYLORS': defaultLogo,
-  'MONASH': defaultLogo,
-  'SUNWAY': defaultLogo,
-  'DEMO': defaultLogo,
+  'TAYLOR': taylorLogo,
+  'TAYLORS': taylorLogo,
+  'MONASH': taylorLogo,
+  'SUNWAY': taylorLogo,
+  'DEMO': taylorLogo,
 };
 
 interface Alert {
