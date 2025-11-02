@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { GraduationCap, Mail, Phone, Building2, User, Lock, AlertCircle, Key } from 'lucide-react';
 
-const taylorLogo = 'https://stackblitz.com/storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDg3NDUyNTAsInB1ciI6ImJsb2JfaWQifX0=--7b7d0d0a54feab3937da7a7dc80fadb46b1d364b/-TAYLOR-LOGO.png';
-const sunwayLogo = 'https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=200';
-const monashLogo = 'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=200';
+const universityImages = [
+  'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&w=300',
+  'https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=300',
+  'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=300'
+];
 
 interface AuthPageProps {
   onAuthSuccess: () => void;
@@ -187,17 +189,11 @@ export function AuthPage({ onAuthSuccess }: AuthPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+      <div className="absolute inset-0 flex items-center justify-center opacity-10">
         <div className="grid grid-cols-3 gap-8 p-8">
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-cover rounded-lg" />
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
+          {[0, 1, 2, 2, 0, 1, 1, 2, 0].map((idx, i) => (
+            <img key={i} src={universityImages[idx]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          ))}
         </div>
       </div>
 
