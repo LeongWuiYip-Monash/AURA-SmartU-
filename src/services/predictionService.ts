@@ -20,21 +20,64 @@ export async function predictNextHour(): Promise<Prediction> {
     };
   }
 
-  const predictions = [
-    { time: [7, 8, 9], message: 'Morning rush expected - parking and lifts will be busy', severity: 'high' as const, icon: 'parking' as const },
-    { time: [12, 13], message: 'Lunch hour approaching - canteen will be crowded', severity: 'medium' as const, icon: 'general' as const },
-    { time: [17, 18], message: 'Evening peak - expect heavy traffic leaving campus', severity: 'high' as const, icon: 'traffic' as const },
-    { time: [10, 11, 14, 15, 16], message: 'Normal campus activity expected', severity: 'low' as const, icon: 'general' as const },
-  ];
+  if (hour >= 7 && hour <= 9) {
+    return {
+      message: 'Morning rush hour - parking and lifts will be very busy',
+      severity: 'high',
+      icon: 'parking',
+      confidence: 0.92
+    };
+  }
 
-  const currentPrediction = predictions.find(p => p.time.includes(hour)) || predictions[predictions.length - 1];
+  if (hour >= 11 && hour <= 14) {
+    return {
+      message: 'Peak lunch period - canteen extremely crowded, long queues expected',
+      severity: 'high',
+      icon: 'general',
+      confidence: 0.90
+    };
+  }
 
-  console.log('AI Prediction generated:', currentPrediction);
+  if (hour >= 17 && hour <= 19) {
+    return {
+      message: 'Evening rush - heavy traffic leaving campus, parking clearing out',
+      severity: 'high',
+      icon: 'traffic',
+      confidence: 0.88
+    };
+  }
+
+  if (hour >= 10 && hour <= 10) {
+    return {
+      message: 'Mid-morning - moderate activity, classes in session',
+      severity: 'medium',
+      icon: 'general',
+      confidence: 0.80
+    };
+  }
+
+  if (hour >= 15 && hour <= 16) {
+    return {
+      message: 'Afternoon classes - steady campus activity',
+      severity: 'medium',
+      icon: 'general',
+      confidence: 0.82
+    };
+  }
+
+  if (hour >= 20 || hour <= 6) {
+    return {
+      message: 'Late evening/Early morning - minimal activity, campus mostly quiet',
+      severity: 'low',
+      icon: 'general',
+      confidence: 0.95
+    };
+  }
 
   return {
-    message: currentPrediction.message,
-    severity: currentPrediction.severity,
-    icon: currentPrediction.icon,
-    confidence: 0.85
+    message: 'Normal campus activity expected',
+    severity: 'low',
+    icon: 'general',
+    confidence: 0.75
   };
 }

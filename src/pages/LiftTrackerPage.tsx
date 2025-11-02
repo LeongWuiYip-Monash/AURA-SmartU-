@@ -201,8 +201,8 @@ export function LiftTrackerPage() {
                           <MapPin className="text-teal-600" size={20} />
                         </div>
                         <div>
-                          <div className="font-bold text-slate-800">{room.building} - {room.room_number}</div>
-                          <div className="text-sm text-slate-600 flex items-center space-x-2">
+                          <div className={`font-bold ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>{room.building} - {room.room_number}</div>
+                          <div className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} flex items-center space-x-2`}>
                             <Building2 size={14} />
                             <span>Floor {room.floor}</span>
                           </div>
@@ -362,7 +362,7 @@ export function LiftTrackerPage() {
                         </div>
 
                         <div className="flex items-center justify-between">
-                          <span className="text-slate-600 flex items-center space-x-1">
+                          <span className={`${isDarkMode ? 'text-slate-400' : 'text-slate-600'} flex items-center space-x-1`}>
                             <Users size={14} />
                             <span>Queue</span>
                           </span>

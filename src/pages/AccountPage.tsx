@@ -173,9 +173,9 @@ export function AccountPage() {
 
       <div className="max-w-4xl mx-auto p-6">
         <div className={`${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'} rounded-xl shadow-lg border overflow-hidden`}>
-          <div className="p-6 border-b border-slate-200">
+          <div className={`p-6 border-b ${isDarkMode ? 'border-slate-700' : 'border-slate-200'}`}>
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-slate-800">Profile Information</h2>
+              <h2 className={`text-2xl font-bold ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Profile Information</h2>
               {!editMode ? (
                 <button
                   onClick={() => setEditMode(true)}
@@ -197,7 +197,7 @@ export function AccountPage() {
                         });
                       }
                     }}
-                    className="px-4 py-2 bg-slate-200 text-slate-800 rounded-lg font-medium hover:bg-slate-300 transition-all"
+                    className={`px-4 py-2 ${isDarkMode ? 'bg-slate-700 text-slate-200 hover:bg-slate-600' : 'bg-slate-200 text-slate-800 hover:bg-slate-300'} rounded-lg font-medium transition-all`}
                   >
                     Cancel
                   </button>
@@ -216,7 +216,7 @@ export function AccountPage() {
 
           <div className="p-6 space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                 <div className="flex items-center space-x-2">
                   <User size={18} />
                   <span>Full Name</span>
@@ -227,18 +227,18 @@ export function AccountPage() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-slate-100' : 'border-slate-300 bg-white text-slate-900'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   placeholder="Enter your full name"
                 />
               ) : (
-                <div className="px-4 py-3 bg-slate-50 rounded-lg text-slate-800 font-medium">
+                <div className={`px-4 py-3 ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-50 text-slate-800'} rounded-lg font-medium`}>
                   {profile?.name || <span className="text-slate-400 italic">Not set - click Edit to add</span>}
                 </div>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                 <div className="flex items-center space-x-2">
                   <Mail size={18} />
                   <span>Email Address</span>
@@ -249,18 +249,18 @@ export function AccountPage() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-slate-100' : 'border-slate-300 bg-white text-slate-900'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   placeholder="your.email@university.edu"
                 />
               ) : (
-                <div className="px-4 py-3 bg-slate-50 rounded-lg text-slate-800 font-medium">
+                <div className={`px-4 py-3 ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-50 text-slate-800'} rounded-lg font-medium`}>
                   {profile?.email || <span className="text-slate-400 italic">Not set</span>}
                 </div>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                 <div className="flex items-center space-x-2">
                   <Phone size={18} />
                   <span>Phone Number</span>
@@ -271,18 +271,18 @@ export function AccountPage() {
                   type="tel"
                   value={formData.phone_number}
                   onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-slate-100' : 'border-slate-300 bg-white text-slate-900'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   placeholder="+60123456789"
                 />
               ) : (
-                <div className="px-4 py-3 bg-slate-50 rounded-lg text-slate-800 font-medium">
+                <div className={`px-4 py-3 ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-50 text-slate-800'} rounded-lg font-medium`}>
                   {profile?.phone_number || <span className="text-slate-400 italic">Not set - click Edit to add</span>}
                 </div>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                 <div className="flex items-center space-x-2">
                   <Building2 size={18} />
                   <span>University</span>
@@ -303,7 +303,7 @@ export function AccountPage() {
                   ))}
                 </select>
               ) : (
-                <div className="px-4 py-3 bg-slate-50 rounded-lg text-slate-800 font-medium">
+                <div className={`px-4 py-3 ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-50 text-slate-800'} rounded-lg font-medium`}>
                   {universities.find(u => u.id === profile?.university_id)?.name || 'Not set'}
                 </div>
               )}
@@ -335,25 +335,25 @@ export function AccountPage() {
           <div className="p-6 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                   Override Date
                 </label>
                 <input
                   type="date"
                   value={dateOverride}
                   onChange={(e) => handleDateOverride(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-slate-100' : 'border-slate-300 bg-white text-slate-900'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
+                <label className={`block text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} mb-2`}>
                   Override Time
                 </label>
                 <input
                   type="time"
                   value={timeOverride}
                   onChange={(e) => handleTimeOverride(e.target.value)}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-3 border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-slate-100' : 'border-slate-300 bg-white text-slate-900'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
               </div>
             </div>

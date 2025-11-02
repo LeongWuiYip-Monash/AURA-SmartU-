@@ -215,7 +215,7 @@ export function ClassroomPage() {
 
                   {!room.is_available && room.available_until && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-600">Free at</span>
+                      <span className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>Free at</span>
                       <span className="font-medium text-orange-600">
                         {formatAvailableUntil(room.available_until)}
                       </span>
@@ -225,12 +225,12 @@ export function ClassroomPage() {
 
                 {room.facilities && Array.isArray(room.facilities) && room.facilities.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-slate-500 mb-2">Facilities</p>
+                    <p className={`text-xs font-medium ${isDarkMode ? 'text-slate-400' : 'text-slate-500'} mb-2`}>Facilities</p>
                     <div className="flex flex-wrap gap-2">
                       {room.facilities.map((facility, index) => (
                         <div
                           key={index}
-                          className="flex items-center space-x-1 px-2 py-1 bg-slate-100 rounded-md text-xs text-slate-700"
+                          className={`flex items-center space-x-1 px-2 py-1 ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-100 text-slate-700'} rounded-md text-xs`}
                         >
                           {getFacilityIcon(facility)}
                           <span>{facility}</span>
@@ -244,8 +244,8 @@ export function ClassroomPage() {
           </div>
         )}
 
-        <div className="mt-6 p-4 bg-white rounded-lg shadow">
-          <div className="flex items-center justify-between text-sm text-slate-600">
+        <div className={`mt-6 p-4 ${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-lg shadow`}>
+          <div className={`flex items-center justify-between text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
             <span>
               Showing {filteredClassrooms.length} of {classrooms.length} classrooms
             </span>
