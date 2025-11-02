@@ -220,7 +220,9 @@ export function Dashboard() {
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center space-x-3">
               {universityLogo && (
-                <img src={universityLogo} alt="University" className="h-10 w-auto object-contain" />
+                <div className="bg-white rounded-lg p-2 shadow-md">
+                  <img src={universityLogo} alt="University" className="h-8 w-auto object-contain" />
+                </div>
               )}
               <div className="h-8 w-px bg-white/30"></div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -256,7 +258,9 @@ export function Dashboard() {
             <h2 className="text-2xl font-bold">{getGreeting()}, {userName}</h2>
           </div>
 
-          {aiPrediction && (
+          {(aiPrediction || currentAlert) && (
+            <div className="space-y-3">
+              {aiPrediction && (
             <div className={`rounded-xl border-2 p-4 ${getAlertColor(aiPrediction.severity)} shadow-lg animate-fade-in relative overflow-hidden`}>
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/20 to-transparent rounded-bl-full"></div>
               <div className="relative">
@@ -287,7 +291,25 @@ export function Dashboard() {
             </div>
           )}
 
-          {isLoadingPrediction && !aiPrediction && (
+              {currentAlert && (
+                <div className={`rounded-xl border-2 p-4 ${getAlertColor(currentAlert.severity)} shadow-md animate-fade-in`}>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-shrink-0">
+                      {currentAlert.severity === 'high' ? <AlertTriangle size={24} /> : getAlertIcon(currentAlert.icon)}
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm">{currentAlert.message}</p>
+                    </div>
+                    <div className="text-xs font-medium opacity-75">
+                      {currentAlert.severity.toUpperCase()}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {isLoadingPrediction && !aiPrediction && !currentAlert && (
             <div className="rounded-xl border-2 p-4 bg-white/10 border-white/20 shadow-md animate-pulse backdrop-blur-sm">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-lg bg-white/20"></div>
@@ -302,22 +324,6 @@ export function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="space-y-8">
-          {currentAlert && (
-            <div className={`rounded-xl border-2 p-4 ${getAlertColor(currentAlert.severity)} shadow-md animate-fade-in`}>
-              <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0">
-                  {currentAlert.severity === 'high' ? <AlertTriangle size={24} /> : getAlertIcon(currentAlert.icon)}
-                </div>
-                <div className="flex-1">
-                  <p className="font-semibold text-sm">{currentAlert.message}</p>
-                </div>
-                <div className="text-xs font-medium opacity-75">
-                  {currentAlert.severity.toUpperCase()}
-                </div>
-              </div>
-            </div>
-          )}
-
           <div>
             <h2 className="text-3xl font-bold text-slate-800 mb-2">Campus Overview</h2>
             <p className="text-slate-600">Quick access to campus facilities</p>
