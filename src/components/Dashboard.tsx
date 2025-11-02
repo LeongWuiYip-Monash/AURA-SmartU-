@@ -16,6 +16,14 @@ const universityLogos: Record<string, string> = {
   'DEMO': taylorsLogo,
 };
 
+const universityGradients: Record<string, string> = {
+  'TAYLOR': 'from-[#2596BE] to-white',
+  'TAYLORS': 'from-[#2596BE] to-white',
+  'MONASH': 'from-blue-600 to-white',
+  'SUNWAY': 'from-amber-500 to-white',
+  'DEMO': 'from-[#2596BE] to-white',
+};
+
 interface Alert {
   message: string;
   severity: 'high' | 'medium' | 'low';
@@ -182,7 +190,7 @@ export function Dashboard() {
   const universityLogo = universityCode ? universityLogos[universityCode] : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 relative overflow-hidden">
+    <div className={`min-h-screen bg-gradient-to-br ${universityGradients[universityCode] || 'from-slate-50 to-slate-100'} relative overflow-hidden`}>
       {universityLogo && (
         <div
           className="absolute inset-0 opacity-20 pointer-events-none"

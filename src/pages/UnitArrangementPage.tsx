@@ -192,8 +192,8 @@ export function UnitArrangementPage() {
 
         const electives = availableModules.filter((m) => !m.is_core);
         if (electives.length > 0) {
-          const electiveList = electives.map((e) => `${e.code} - ${e.name}`).join(', ');
-          assistantResponse = `Perfect! Starting in ${userMessage}. Would you like to choose any specific electives? Available electives: ${electiveList}. (You can type "Skip" if you want to use recommended electives)`;
+          const electiveList = electives.map((e, i) => `${i + 1}. ${e.code} - ${e.name}`).join('\n');
+          assistantResponse = `Perfect! Starting in ${userMessage}. Would you like to choose any specific electives?\n\nAvailable electives:\n${electiveList}\n\n(You can type "Skip" if you want to use recommended electives, or enter the numbers/codes of your preferred electives)`;
           newStep = 3;
         } else {
           assistantResponse = `Perfect! Starting in ${userMessage}. Are you interested in participating in an overseas exchange program? (Yes/No)`;
