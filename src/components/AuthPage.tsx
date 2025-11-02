@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { GraduationCap, Mail, Phone, Building2, User, Lock, AlertCircle, Key } from 'lucide-react';
-import taylorLogo from '../assets/TAYLOR-LOGO.png';
-import sunwayLogo from '../assets/unnamed.png';
-import monashLogo from '../assets/monash-logo-v2.png';
+
+const universityLogos = [
+  'https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=200',
+  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=200',
+  'https://images.pexels.com/photos/159490/yale-university-landscape-universities-schools-159490.jpeg?auto=compress&cs=tinysrgb&w=200'
+];
 
 interface AuthPageProps {
   onAuthSuccess: () => void;
@@ -188,15 +191,15 @@ export function AuthPage({ onAuthSuccess }: AuthPageProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center opacity-20">
         <div className="grid grid-cols-3 gap-8 p-8">
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-contain" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-contain" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-contain" />
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-contain" />
-          <img src={monashLogo} alt="Monash University" className="w-48 h-48 object-contain" />
-          <img src={sunwayLogo} alt="Sunway University" className="w-48 h-48 object-contain" />
-          <img src={taylorLogo} alt="Taylor University" className="w-48 h-48 object-contain" />
+          <img src={universityLogos[0]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[1]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[2]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[2]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[0]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[1]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[1]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[2]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
+          <img src={universityLogos[0]} alt="University" className="w-48 h-48 object-cover rounded-lg" />
         </div>
       </div>
 
