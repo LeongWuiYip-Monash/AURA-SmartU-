@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Phone, Mail, MapPin, Clock, AlertTriangle, Shield, Users, Settings, Wrench } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface EmergencyContact {
   id: string;
@@ -31,6 +32,7 @@ const categoryColors: Record<string, string> = {
 
 export function EmergencyContactsPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [contacts, setContacts] = useState<EmergencyContact[]>([]);
   const [loading, setLoading] = useState(true);
 

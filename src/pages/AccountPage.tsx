@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, User, Mail, Phone, Building2, Save, LogOut, Clock, RotateCcw } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface UserProfile {
   id: string;
@@ -19,6 +20,7 @@ interface University {
 
 export function AccountPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

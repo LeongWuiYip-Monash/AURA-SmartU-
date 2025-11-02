@@ -4,6 +4,7 @@ import { UserCircle2, School, ArrowUpDown, Car, ParkingSquare, BookOpen, Utensil
 import { VoiceAssistant } from './VoiceAssistant';
 import { useState, useEffect } from 'react';
 import { predictNextHour, Prediction } from '../services/predictionService';
+import { useTheme } from '../contexts/ThemeContext';
 import taylorsLogo from '../assets/taylors-logo-01.png';
 import sunwayLogo from '../assets/Sunway_logo.png';
 import monashLogo from '../assets/monash-logo-v2.png';
@@ -32,13 +33,13 @@ interface Alert {
 
 export function Dashboard() {
   const navigate = useNavigate();
+  const { isDarkMode, toggleDarkMode } = useTheme();
   const [universityCode, setUniversityCode] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [currentAlert, setCurrentAlert] = useState<Alert | null>(null);
   const [aiPrediction, setAiPrediction] = useState<Prediction | null>(null);
   const [isLoadingPrediction, setIsLoadingPrediction] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     fetchUserUniversity();
@@ -238,7 +239,7 @@ export function Dashboard() {
                 </span>
               </div>
               <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+                onClick={toggleDarkMode}
                 className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
                 title="Toggle Dark Mode"
               >

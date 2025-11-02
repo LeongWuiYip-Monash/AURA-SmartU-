@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Search, Users, Clock, TrendingUp, TrendingDown, Minus, MapPin, Building2 } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface Lift {
   id: string;
@@ -19,6 +20,7 @@ interface Classroom {
 
 export function LiftTrackerPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [destination, setDestination] = useState('');
   const [currentFloor, setCurrentFloor] = useState(1);
   const [lifts, setLifts] = useState<Lift[]>([]);

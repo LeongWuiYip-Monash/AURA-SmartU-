@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Car, CheckCircle, AlertCircle, MapPin } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface ParkingLot {
   id: string;
@@ -14,6 +15,7 @@ interface ParkingLot {
 
 export function ParkingPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [parkingLots, setParkingLots] = useState<ParkingLot[]>([]);
   const [loading, setLoading] = useState(true);
   const [recommendedLot, setRecommendedLot] = useState<ParkingLot | null>(null);

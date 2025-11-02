@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, MapPin, Clock, Navigation, TrendingUp, AlertTriangle, RefreshCw, DollarSign } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface POI {
   id: string;
@@ -37,6 +38,7 @@ interface University {
 
 export function TrafficStatusPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [pois, setPois] = useState<CombinedPOIData[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);

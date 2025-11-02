@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './lib/supabase';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthPage } from './components/AuthPage';
 import { Dashboard } from './components/Dashboard';
 import { ClassroomPage } from './pages/ClassroomPage';
@@ -45,21 +46,23 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/classrooms" element={<ClassroomPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/unit-arrangement" element={<UnitArrangementPage />} />
-        <Route path="/lift-tracker" element={<LiftTrackerPage />} />
-        <Route path="/traffic-status" element={<TrafficStatusPage />} />
-        <Route path="/parking" element={<ParkingPage />} />
-        <Route path="/library-seats" element={<LibrarySeatsPage />} />
-        <Route path="/canteen-seats" element={<CanteenSeatsPage />} />
-        <Route path="/emergency-contacts" element={<EmergencyContactsPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/classrooms" element={<ClassroomPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/unit-arrangement" element={<UnitArrangementPage />} />
+          <Route path="/lift-tracker" element={<LiftTrackerPage />} />
+          <Route path="/traffic-status" element={<TrafficStatusPage />} />
+          <Route path="/parking" element={<ParkingPage />} />
+          <Route path="/library-seats" element={<LibrarySeatsPage />} />
+          <Route path="/canteen-seats" element={<CanteenSeatsPage />} />
+          <Route path="/emergency-contacts" element={<EmergencyContactsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

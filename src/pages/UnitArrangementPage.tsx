@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Send, Sparkles, Calendar, BookOpen, Globe } from 'lucide-react';
 import { Course, CourseModule } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -18,6 +19,7 @@ interface UserData {
 }
 
 export function UnitArrangementPage() {
+  const { isDarkMode } = useTheme();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, UtensilsCrossed, CheckCircle, AlertCircle, Users, MapPin } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface FoodStall {
   id: string;
@@ -16,6 +17,7 @@ interface FoodStall {
 
 export function CanteenSeatsPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [foodStalls, setFoodStalls] = useState<FoodStall[]>([]);
   const [loading, setLoading] = useState(true);
   const [recommendedStall, setRecommendedStall] = useState<FoodStall | null>(null);

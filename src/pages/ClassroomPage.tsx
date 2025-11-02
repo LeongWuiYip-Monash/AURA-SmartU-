@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Search, ArrowLeft, MapPin, Users, Wifi, Monitor, Wind, Beaker } from 'lucide-react';
 import type { Classroom } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
 
 export function ClassroomPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [classrooms, setClassrooms] = useState<Classroom[]>([]);
   const [filteredClassrooms, setFilteredClassrooms] = useState<Classroom[]>([]);
   const [loading, setLoading] = useState(true);
@@ -99,8 +101,8 @@ export function ClassroomPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
-        <div className="bg-white rounded-2xl p-8 shadow-xl">
+      <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-br from-slate-900 to-slate-800' : 'bg-gradient-to-br from-slate-50 to-slate-100'} flex items-center justify-center`}>
+        <div className={`${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-2xl p-8 shadow-xl`}>
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
         </div>
       </div>
@@ -108,8 +110,8 @@ export function ClassroomPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-6 text-white shadow-lg">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-br from-slate-900 to-slate-800' : 'bg-gradient-to-br from-slate-50 to-slate-100'} transition-colors duration-300`}>
+      <div className={`${isDarkMode ? 'bg-gradient-to-r from-slate-800 to-slate-900' : 'bg-gradient-to-r from-blue-600 to-cyan-600'} p-6 text-white shadow-lg transition-colors duration-300`}>
         <div className="max-w-7xl mx-auto">
           <button
             onClick={() => navigate('/')}
@@ -165,26 +167,26 @@ export function ClassroomPage() {
       <div className="max-w-7xl mx-auto p-6">
         {filteredClassrooms.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-slate-400 mb-2">
+            <div className={`${isDarkMode ? 'text-slate-500' : 'text-slate-400'} mb-2`}>
               <MapPin size={48} className="mx-auto" />
             </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">No classrooms found</h3>
-            <p className="text-slate-600">Try adjusting your filters</p>
+            <h3 className={`text-xl font-bold ${isDarkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>No classrooms found</h3>
+            <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>Try adjusting your filters</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredClassrooms.map((room) => (
               <div
                 key={room.id}
-                className="bg-white border border-slate-200 rounded-xl p-4 hover:shadow-lg transition-all"
+                className={`${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'} border rounded-xl p-4 hover:shadow-lg transition-all`}
               >
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="flex items-center space-x-2 mb-1">
                       <MapPin className="text-blue-600" size={18} />
-                      <h3 className="font-bold text-slate-800">{room.room_number}</h3>
+                      <h3 className={`font-bold ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>{room.room_number}</h3>
                     </div>
-                    <p className="text-sm text-slate-600">{room.building}</p>
+                    <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>{room.building}</p>
                   </div>
                   <div
                     className={`px-3 py-1 rounded-full text-xs font-bold text-white ${getAvailabilityColor(
@@ -197,17 +199,17 @@ export function ClassroomPage() {
 
                 <div className="space-y-2 mb-3">
                   <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center space-x-2 text-slate-600">
+                    <div className={`flex items-center space-x-2 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                       <Users size={16} />
                       <span>Capacity</span>
                     </div>
-                    <span className="font-medium text-slate-800">{room.capacity} seats</span>
+                    <span className={`font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>{room.capacity} seats</span>
                   </div>
 
                   {room.floor && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-600">Floor</span>
-                      <span className="font-medium text-slate-800">{room.floor}</span>
+                      <span className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>Floor</span>
+                      <span className={`font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>{room.floor}</span>
                     </div>
                   )}
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, BookOpen, CheckCircle, AlertCircle, Layers, Zap } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface LibrarySeat {
   id: string;
@@ -16,6 +17,7 @@ interface LibrarySeat {
 
 export function LibrarySeatsPage() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [librarySeats, setLibrarySeats] = useState<LibrarySeat[]>([]);
   const [loading, setLoading] = useState(true);
   const [recommendedZone, setRecommendedZone] = useState<LibrarySeat | null>(null);
